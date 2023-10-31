@@ -4,15 +4,15 @@ import {
   Controller,
   Get,
   Post,
-  // Delete,
-  // Patch,
+  Delete,
+  Patch,
   // Query,
 } from '@nestjs/common';
 import { TasksService } from './tasks.service';
 // import { TaskStatus } from './task-status.enum';
 import { CreateTaskDto } from './dto/create-task.dto';
 // import { GetTasksFilterDto } from './dto/get-tasks.filter.dto';
-// import { UpdateTaskStatusDto } from './dto/update-task-status.dto';
+import { UpdateTaskStatusDto } from './dto/update-task-status.dto';
 import { Task } from './task.entity';
 
 @Controller('tasks') // tasks also as router url
@@ -29,10 +29,10 @@ export class TasksController {
   //   }
   // }
 
-  // @Delete('/:id')
-  // deleteTask(@Param('id') id: string): void {
-  //   return this.tasksService.deleteTask(id);
-  // }
+  @Delete('/:id')
+  deleteTask(@Param('id') id: string): Promise<void> {
+    return this.tasksService.deleteTask(id);
+  }
 
   @Get('/:id')
   getTaskById(@Param('id') id: string): Promise<Task> {
@@ -52,11 +52,12 @@ export class TasksController {
   //   return this.tasksService.createTask(createTaskDto);
   // }
 
-  // @Patch('/:id/status')
-  // updateTaskStatus(
-  //   @Param('id') id: string,
-  //   @Body() updateTaskStatusDto: UpdateTaskStatusDto,
-  // ): Task {
-  //   return this.tasksService.updateTaskStatus(id, updateTaskStatusDto);
-  // }
+  @Patch('/:id/status')
+  updateTaskStatus(
+    @Param('id') id: string,
+    @Body() updateTaskStatusDto: UpdateTaskStatusDto,
+  ): Promise<Task> {
+    const { status } = updateTaskStatusDto;
+    return this.tasksService.updateTaskStatus(id, status);
+  }
 }
