@@ -10,7 +10,7 @@ import { JwtModule } from '@nestjs/jwt';
   imports: [
     PassportModule.register({ defaultStrategy: 'jwt' }),
     JwtModule.register({
-      secret: 'topSecret',
+      secret: 'topSecret12345', // this is not correct way to store SecretKey
       signOptions: {
         expiresIn: 360, // on hour
       },
