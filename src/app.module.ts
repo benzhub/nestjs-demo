@@ -6,6 +6,7 @@ import { AuthModule } from './auth/auth.module';
 @Module({
   imports: [
     TasksModule,
+    // not safety, just for the demo.
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: '127.0.0.1',

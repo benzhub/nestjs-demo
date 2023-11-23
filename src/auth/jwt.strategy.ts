@@ -13,7 +13,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     private usersRepository: MongoRepository<User>,
   ) {
     super({
-      secretOrKey: 'topSecret12345',
+      secretOrKey: 'topSecret12345', // not safety, just for the demo.
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
     });
   }
